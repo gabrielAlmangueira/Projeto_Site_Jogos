@@ -5,6 +5,18 @@
 
 É uma aplicação full stack web que consiste em: Login e logout por parte dos usuários cadastrados, cadastro de novos usuários, inserção de filmes a serem exibidos no catálogo, atribuição de críticas sobre os títulos adicionados e edição dos filmes adicionados.
 
+## Colaboradores
+
+
+| Nome       | GitHub                                       |
+|------------|----------------------------------------------|
+| Gabriel de Almeida| [@gabrielAlmangueira](https://github.com/gabrielAlmangueira)|
+| Hilton Medeiros | [@HiltonMedeiros](https://github.com/HiltonMedeiros) |
+| Lucas Bezerra | [@lucasbezerraprg](https://github.com/lucasbezerraprg)|
+| Victor de Almeida| [@VictorAlmeidaM](https://github.com/VictorAlmeidaM)|
+
+---
+
 ## Funcionalidades
 
 - **Registro de Usuário**: Permite que novos usuários se registrem usando um email e uma senha.
@@ -86,17 +98,7 @@ Verificar a Execução
 - Crie um banco de dados chamado `projetofinal`.
 - Importe o arquivo SQL fornecido (`projetofinal.sql`) para criar as tabelas necessárias (`users`, `movies`, `reviews`).
 
-## Colaboradores
 
-
-| Nome       | GitHub                                       |
-|------------|----------------------------------------------|
-| Gabriel de Almeida| [@gabrielAlmangueira](https://github.com/gabrielAlmangueira)|
-| Hilton Medeiros | [@HiltonMedeiros](https://github.com/HiltonMedeiros) |
-| Lucas Bezerra | [@lucasbezerraprg](https://github.com/lucasbezerraprg)|
-| Victor de Almeida| [@VictorAlmeidaM](https://github.com/VictorAlmeidaM)|
-
----
 
 
 
