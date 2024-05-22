@@ -73,10 +73,10 @@ if ($conn->connect_error) {
 }
 ?>
 Estrutura de Pastas do Projeto no XAMPP:
-
 scss
 Copiar código
 xampp/
+
 ├── htdocs/
 │   ├── meu_projeto/
 │   │   ├── index.php
@@ -88,6 +88,7 @@ xampp/
 │   │   ├── editar_filme.php
 │   │   ├── visualizar_detalhes.php
 │   │   └── ... (outros arquivos PHP e de configuração)
+
 Passo 5: Iniciar o Servidor
 Iniciar Apache: No painel de controle do XAMPP, inicie o Apache.
 Acessar o Projeto: Abra um navegador web e acesse http://localhost/meu_projeto.
