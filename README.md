@@ -15,7 +15,6 @@
 | Lucas Bezerra | [@lucasbezerraprg](https://github.com/lucasbezerraprg)|
 | Victor de Almeida| [@VictorAlmeidaM](https://github.com/VictorAlmeidaM)|
 
----
 
 ## Funcionalidades
 
