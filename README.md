@@ -65,7 +65,7 @@ Verificar a Execução
    - Certifique-se de que seu arquivo de configuração PHP (`config.php` ou similar) está configurado corretamente para conectar ao banco de dados MySQL.
 
 
-### Passo 3: Configurar o Servidor Web (Apache)
+### Passo 5: Configurar o Servidor Web (Apache)
 
 1. **Localização dos Arquivos**: Coloque os arquivos do projeto na pasta `htdocs` do XAMPP, geralmente localizada em `C:\xampp\htdocs`.
 2. **Configuração do Apache**:
@@ -73,7 +73,7 @@ Verificar a Execução
 - Certifique-se de que as portas 80 (HTTP) e 443 (HTTPS) estão configuradas corretamente.
 - Para habilitar HTTPS, você pode seguir um guia como [este](https://httpd.apache.org/docs/2.4/ssl/ssl_howto.html).
 
-### Passo 4: Configurar o Banco de Dados (MySQL)
+### Passo 6: Configurar o Banco de Dados (MySQL)
 
 1. **Iniciar MySQL**: Abra o painel de controle do XAMPP e inicie o MySQL.
 2. **phpMyAdmin**: Acesse o phpMyAdmin (geralmente em `http://localhost/phpmyadmin`).
