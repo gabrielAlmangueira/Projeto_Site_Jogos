@@ -13,3 +13,8 @@
 
 ## Front end
 - HTML5 / CSS3
+  
+# Dependencias
+## Instalar o Xampp
+- Iniciar Servidor Apache e MySQL
+- Ativar extensão - Extension:GB no php.ini
