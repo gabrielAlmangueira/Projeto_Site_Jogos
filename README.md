@@ -1,27 +1,3 @@
-# Avaliação de filmes
-
-# Sobre o projeto
-
-
-É uma aplicação full stack web que consiste em: Login e logout por parte dos usuários cadastrados, cadastro de novos usuários, inserção de filmes a serem exibidos no catálogo, atribuição de críticas sobre os títulos adicionados e edição dos filmes adicionados.
-
-#Requisitos para executar o projeto.
-
-# Tecnologias utilizadas
-## Back end
-- Php
-
-## Front end
-- HTML5 / CSS3
-  
-# Dependencias
-## Instalar o Xampp
-- Instalar o PHP e suas extensões no Vscode.
-- Iniciar Servidor Apache e MySQL.
-- Ativar extensão - Extension:GB no php.ini.
-
-# Projeto de Avaliação e Catálogo de Filmes
-
 Este projeto é um sistema de avaliação e catálogo de filmes, similar ao IMDB, onde os usuários podem se cadastrar, deixar avaliações, ler críticas e visualizar a avaliação geral de cada filme.
 
 ## Funcionalidades
