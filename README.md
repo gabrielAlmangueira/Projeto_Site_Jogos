@@ -49,3 +49,35 @@ Este projeto é um sistema de avaliação e catálogo de filmes, similar ao IMDB
 ### Passo 2: Configurar o Servidor Web (Apache)
 
 1. **Localização dos Arquivos**: Coloque os arquivos do projeto na pasta `htdocs` do XAMPP, geralmente localizada em `C:\xampp\htdocs`.
+2. **Configuração do Apache**:
+- Abra o arquivo `httpd.conf` (geralmente encontrado em `C:\xampp\apache\conf`).
+- Certifique-se de que as portas 80 (HTTP) e 443 (HTTPS) estão configuradas corretamente.
+- Para habilitar HTTPS, você pode seguir um guia como [este](https://httpd.apache.org/docs/2.4/ssl/ssl_howto.html).
+
+### Passo 3: Configurar o Banco de Dados (MySQL)
+
+1. **Iniciar MySQL**: Abra o painel de controle do XAMPP e inicie o MySQL.
+2. **phpMyAdmin**: Acesse o phpMyAdmin (geralmente em `http://localhost/phpmyadmin`).
+3. **Criar Banco de Dados**:
+- Crie um banco de dados chamado `projetofinal`.
+- Importe o arquivo SQL fornecido (`projetofinal.sql`) para criar as tabelas necessárias (`users`, `movies`, `reviews`).
+
+### Passo 4: Configuração do Projeto PHP
+
+1. **Configuração de Conexão ao Banco de Dados**: Edite o arquivo de configuração PHP para conectar ao banco de dados MySQL.
+
+```php
+<?php
+$servername = "localhost";
+$username = "root";
+$password = "";
+$dbname = "projetofinal";
+
+// Cria conexão
+$conn = new mysqli($servername, $username, $password, $dbname);
+
+// Verifica conexão
+if ($conn->connect_error) {
+    die("Connection failed: " . $conn->connect_error);
+}
+?>
