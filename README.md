@@ -16,5 +16,6 @@
   
 # Dependencias
 ## Instalar o Xampp
-- Iniciar Servidor Apache e MySQL
-- Ativar extensão - Extension:GB no php.ini
+- Instalar o PHP e suas extensões no Vscode.
+- Iniciar Servidor Apache e MySQL.
+- Ativar extensão - Extension:GB no php.ini.
