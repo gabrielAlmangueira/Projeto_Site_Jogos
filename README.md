@@ -1,4 +1,4 @@
-# Avaliação de filmes
+# Avaliação de Filmes
 
 # Sobre o projeto
 
