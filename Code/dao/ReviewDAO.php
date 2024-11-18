@@ -5,7 +5,7 @@
 
   require_once("dao/UserDAO.php");
 
-  class ReviewDao implements ReviewDAOInterface {
+  class ReviewDAO implements ReviewDAOInterface {
 
     private $conn;
     private $url;
@@ -18,79 +18,66 @@
     }
 
     public function buildReview($data) {
+      $review = new Review();
 
-      $reviewObject = new Review();
+      $review->id = $data["id"];
+      $review->rating = $data["rating"];
+      $review->review = $data["review"];
+      $review->games_id = $data["games_id"];
+      $review->users_id = $data["users_id"];
 
-      $reviewObject->id = $data["id"];
-      $reviewObject->rating = $data["rating"];
-      $reviewObject->review = $data["review"];
-      $reviewObject->users_id = $data["users_id"];
-      $reviewObject->movies_id = $data["movies_id"];
-
-      return $reviewObject;
-
+      return $review;
     }
 
     public function create(Review $review) {
-
       $stmt = $this->conn->prepare("INSERT INTO reviews (
-        rating, review, movies_id, users_id
+        rating, review, games_id, users_id
       ) VALUES (
-        :rating, :review, :movies_id, :users_id
+        :rating, :review, :games_id, :users_id
       )");
 
       $stmt->bindParam(":rating", $review->rating);
       $stmt->bindParam(":review", $review->review);
-      $stmt->bindParam(":movies_id", $review->movies_id);
+      $stmt->bindParam(":games_id", $review->games_id);
       $stmt->bindParam(":users_id", $review->users_id);
 
       $stmt->execute();
 
-      // Mensagem de sucesso por adicionar filme
+      // Mensagem de sucesso por adicionar review
       $this->message->setMessage("Crítica adicionada com sucesso!", "success", "index.php");
-
     }
 
-    public function getMoviesReview($id) {
-
+    public function getGamesReview($id) {
       $reviews = [];
 
-      $stmt = $this->conn->prepare("SELECT * FROM reviews WHERE movies_id = :movies_id");
+      $stmt = $this->conn->prepare("SELECT * FROM reviews WHERE games_id = :games_id");
 
-      $stmt->bindParam(":movies_id", $id);
+      $stmt->bindParam(":games_id", $id);
 
       $stmt->execute();
 
       if($stmt->rowCount() > 0) {
-
         $reviewsData = $stmt->fetchAll();
 
         $userDao = new UserDao($this->conn, $this->url);
 
         foreach($reviewsData as $review) {
-
           $reviewObject = $this->buildReview($review);
-
           // Chamar dados do usuário
           $user = $userDao->findById($reviewObject->users_id);
-
           $reviewObject->user = $user;
-
           $reviews[] = $reviewObject;
         }
-
       }
 
       return $reviews;
-
     }
 
-    public function hasAlreadyReviewed($id, $userId) {
+    public function hasAlreadyReviewed($games_id, $users_id) {
+      $stmt = $this->conn->prepare("SELECT * FROM reviews WHERE games_id = :games_id AND users_id = :users_id");
 
-      $stmt = $this->conn->prepare("SELECT * FROM reviews WHERE movies_id = :movies_id AND users_id = :users_id");
-
-      $stmt->bindParam(":movies_id", $id);
-      $stmt->bindParam(":users_id", $userId);
+      $stmt->bindParam(":games_id", $games_id);
+      $stmt->bindParam(":users_id", $users_id);
 
       $stmt->execute();
 
@@ -99,37 +86,18 @@
       } else {
         return false;
       }
-
     }
 
-    public function getRatings($id) {
+    public function getRatings($games_id) {
+      $stmt = $this->conn->prepare("SELECT AVG(rating) as rating FROM reviews WHERE games_id = :games_id");
 
-      $stmt = $this->conn->prepare("SELECT * FROM reviews WHERE movies_id = :movies_id");
-
-      $stmt->bindParam(":movies_id", $id);
+      $stmt->bindParam(":games_id", $games_id);
 
       $stmt->execute();
 
-      if($stmt->rowCount() > 0) {
+      $rating = $stmt->fetch(PDO::FETCH_ASSOC);
 
-        $rating = 0;
-
-        $reviews = $stmt->fetchAll();
-
-        foreach($reviews as $review) {
-          $rating += $review["rating"];
-        }
-
-        $rating = $rating / count($reviews);
-
-      } else {
-
-        $rating = "Não avaliado";
-
-      }
-
-      return $rating;
-
+      return $rating["rating"];
     }
-
   }
+?>

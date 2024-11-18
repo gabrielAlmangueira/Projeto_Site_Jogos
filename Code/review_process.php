@@ -2,16 +2,16 @@
 
   require_once("globals.php");
   require_once("db.php");
-  require_once("models/Movie.php");
+  require_once("models/Game.php");
   require_once("models/Review.php");
   require_once("models/Message.php");
   require_once("dao/UserDAO.php");
-  require_once("dao/MovieDAO.php");
+  require_once("dao/GameDAO.php");
   require_once("dao/ReviewDAO.php");
 
   $message = new Message($BASE_URL);
   $userDao = new UserDAO($conn, $BASE_URL);
-  $movieDao = new MovieDAO($conn, $BASE_URL);
+  $gameDao = new GameDAO($conn, $BASE_URL);
   $reviewDao = new ReviewDAO($conn, $BASE_URL);
 
   // Recebendo o tipo do formulário
@@ -25,22 +25,22 @@
     // Recebendo dados do post
     $rating = filter_input(INPUT_POST, "rating");
     $review = filter_input(INPUT_POST, "review");
-    $movies_id = filter_input(INPUT_POST, "movies_id");
+    $games_id = filter_input(INPUT_POST, "games_id");
     $users_id = $userData->id;
 
     $reviewObject = new Review();
 
-    $movieData = $movieDao->findById($movies_id);
+    $gameData = $gameDao->findById($games_id);
 
-    // Validando se o filme existe
-    if($movieData) {
+    // Validando se o jogo existe
+    if($gameData) {
 
       // Verificar dados mínimos
-      if(!empty($rating) && !empty($review) && !empty($movies_id)) {
+      if(!empty($rating) && !empty($review) && !empty($games_id)) {
 
         $reviewObject->rating = $rating;
         $reviewObject->review = $review;
-        $reviewObject->movies_id = $movies_id;
+        $reviewObject->games_id = $games_id;
         $reviewObject->users_id = $users_id;
 
         $reviewDao->create($reviewObject);
@@ -62,3 +62,4 @@
     $message->setMessage("Informações inválidas!", "error", "index.php");
 
   }
+?>

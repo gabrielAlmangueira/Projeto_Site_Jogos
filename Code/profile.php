@@ -4,11 +4,11 @@
   // Verifica se usuário está autenticado
   require_once("models/User.php");
   require_once("dao/UserDAO.php");
-  require_once("dao/MovieDAO.php");
+  require_once("dao/GameDAO.php");
 
   $user = new User();
   $userDao = new UserDAO($conn, $BASE_URL);
-  $movieDao = new MovieDAO($conn, $BASE_URL);
+  $gameDao = new GameDAO($conn, $BASE_URL);
 
   // Receber id do usuário
   $id = filter_input(INPUT_GET, "id");
@@ -42,8 +42,8 @@
     $userData->image = "user.png";
   }
 
-  // Filmes que o usuário adicionou
-  $userMovies = $movieDao->getMoviesByUserId($id);
+  // Jogos que o usuário adicionou
+  $userGames = $gameDao->getGamesByUserId($id);
 
 ?>
   <div id="main-container" class="container-fluid">
@@ -59,14 +59,14 @@
             <p class="profile-description">O usuário ainda não escreveu nada aqui...</p>
           <?php endif; ?>
         </div>
-        <div class="col-md-12 added-movies-container">
-          <h3>Filmes que enviou:</h3>
-          <div class="movies-container">
-            <?php foreach($userMovies as $movie): ?>
-              <?php require("templetes/movie_card.php"); ?>
+        <div class="col-md-12 added-games-container">
+          <h3>Jogos que enviou:</h3>
+          <div class="games-container">
+            <?php foreach($userGames as $game): ?>
+              <?php require("templetes/game_card.php"); ?>
             <?php endforeach; ?>
-            <?php if(count($userMovies) === 0): ?>
-              <p class="empty-list">O usuário ainda não enviou filmes.</p>
+            <?php if(count($userGames) === 0): ?>
+              <p class="empty-list">Ainda não há jogos cadastrados!</p>
             <?php endif; ?>
           </div>
         </div>

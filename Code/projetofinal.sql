@@ -48,6 +48,30 @@ INSERT INTO `movies` (`id`, `title`, `description`, `image`, `trailer`, `categor
 -- --------------------------------------------------------
 
 --
+-- Estrutura da tabela `games`
+--
+
+CREATE TABLE `games` (
+  `id` int(11) UNSIGNED NOT NULL,
+  `title` varchar(100) DEFAULT NULL,
+  `description` text DEFAULT NULL,
+  `image` varchar(200) DEFAULT NULL,
+  `trailer` varchar(150) DEFAULT NULL,
+  `category` varchar(50) DEFAULT NULL,
+  `length` varchar(50) DEFAULT NULL,
+  `users_id` int(11) UNSIGNED DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+--
+-- Extraindo dados da tabela `games`
+--
+
+INSERT INTO `games` (`id`, `title`, `description`, `image`, `trailer`, `category`, `length`, `users_id`) VALUES
+// ...existing data...
+
+-- --------------------------------------------------------
+
+--
 -- Estrutura da tabela `reviews`
 --
 
@@ -56,8 +80,15 @@ CREATE TABLE `reviews` (
   `rating` int(11) DEFAULT NULL,
   `review` text DEFAULT NULL,
   `users_id` int(11) UNSIGNED DEFAULT NULL,
-  `movies_id` int(11) UNSIGNED DEFAULT NULL
+  `games_id` int(11) UNSIGNED DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+--
+-- Extraindo dados da tabela `reviews`
+--
+
+INSERT INTO `reviews` (`id`, `rating`, `review`, `games_id`, `users_id`) VALUES
+// ...existing data...
 
 -- --------------------------------------------------------
 
@@ -97,11 +128,19 @@ ALTER TABLE `movies`
   ADD KEY `users_id` (`users_id`);
 
 --
+-- Índices para tabela `games`
+--
+ALTER TABLE `games`
+  ADD PRIMARY KEY (`id`),
+  ADD KEY `users_id` (`users_id`);
+
+--
 -- Índices para tabela `reviews`
 --
 ALTER TABLE `reviews`
   ADD PRIMARY KEY (`id`),
-  ADD KEY `users_id` (`users_id`);
+  ADD KEY `users_id` (`users_id`),
+  ADD KEY `games_id` (`games_id`);
 
 --
 -- Índices para tabela `users`
@@ -117,6 +156,12 @@ ALTER TABLE `users`
 -- AUTO_INCREMENT de tabela `movies`
 --
 ALTER TABLE `movies`
+  MODIFY `id` int(11) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
+
+--
+-- AUTO_INCREMENT de tabela `games`
+--
+ALTER TABLE `games`
   MODIFY `id` int(11) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
 
 --
@@ -142,11 +187,18 @@ ALTER TABLE `movies`
   ADD CONSTRAINT `movies_ibfk_1` FOREIGN KEY (`users_id`) REFERENCES `users` (`id`);
 
 --
+-- Limitadores para a tabela `games`
+--
+ALTER TABLE `games`
+  ADD CONSTRAINT `games_ibfk_1` FOREIGN KEY (`users_id`) REFERENCES `users` (`id`);
+
+--
 -- Limitadores para a tabela `reviews`
 --
 ALTER TABLE `reviews`
   ADD CONSTRAINT `reviews_ibfk_1` FOREIGN KEY (`users_id`) REFERENCES `users` (`id`),
-  ADD CONSTRAINT `reviews_ibfk_2` FOREIGN KEY (`users_id`) REFERENCES `movies` (`id`);
+  ADD CONSTRAINT `reviews_ibfk_2` FOREIGN KEY (`users_id`) REFERENCES `movies` (`id`),
+  ADD CONSTRAINT `reviews_ibfk_2` FOREIGN KEY (`games_id`) REFERENCES `games` (`id`);
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
